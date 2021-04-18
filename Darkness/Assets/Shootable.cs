@@ -27,6 +27,8 @@ public class Shootable : MonoBehaviour
     {
         if (other.tag=="Ennemie")
         {
+            EnnemieMovement e = other.GetComponent<EnnemieMovement>();
+            e.GetDammage(5);
             GameObject obj = Instantiate(particuleEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
             Destroy(obj, 0.5f);

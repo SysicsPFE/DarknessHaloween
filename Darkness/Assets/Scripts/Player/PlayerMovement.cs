@@ -127,12 +127,37 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.speed = 1;
         }
-
-        if (move != Vector3.zero&& transform.forward.normalized != move.normalized&&playerEvents.canRotate==true)
+        Transform target=null;
+        Collider[] ennemies = Physics.OverlapSphere(transform.position, 10);
+        for (int i = 0; i < ennemies.Length; i++)
         {
-            LockOnTarget(move.normalized);
-           // gameObject.transform.forward = move;
+            if (ennemies[i].transform.tag=="Ennemie")
+            {
+                target = ennemies[i].transform;
+                break;
+
+            }
         }
+        if (target!=null)
+        {
+            if (playerEvents.canRotate == true)
+            {
+                LookToEnnemie(ennemies[0].transform);
+            }
+            
+            
+        }
+        else
+        {
+
+            if (move != Vector3.zero && playerEvents.canRotate == true)
+            {
+
+                LockOnTarget(move.normalized);
+                // gameObject.transform.forward = move;
+            }
+        }
+       
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && groundedPlayer)
@@ -183,6 +208,14 @@ public class PlayerMovement : MonoBehaviour
             transform.forward = root;
         
       
+    }
+    void LookToEnnemie(Transform target)
+    {
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, 0.3f).eulerAngles;
+        // LeanTween.rotate(transform, new Vector3(0,dir.y,0), 0.3f);
+        transform.rotation = Quaternion.Euler(0, rotation.y, 0);
     }
 
     Transform switchTarget;
