@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WaveGenerator : MonoBehaviour
 {
+    public Text WaveText;
     public List<Transform> StartPos;
     public List<Endposition> EndPos;
 
@@ -42,6 +43,11 @@ public class WaveGenerator : MonoBehaviour
 
     IEnumerator InstatnitateWave()
     {
+        WaveText.text = "WAVE "+(WaveIndex+1);
+        WaveText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+        WaveText.gameObject.SetActive(false);
         Nbennemie = waves[WaveIndex].Nbennemie;
         TextNbennemie.text = Nbennemie.ToString();
         Textcounter.text = "0";

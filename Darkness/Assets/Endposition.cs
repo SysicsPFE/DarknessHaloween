@@ -9,6 +9,8 @@ public class Endposition : MonoBehaviour
     public Transform thisTransform;
     public bool HasEnnemie;
 
+    public GameObject sprite;
+
     public WaveGenerator waveGenerator;
     // Start is called before the first frame update
     
@@ -17,5 +19,6 @@ public class Endposition : MonoBehaviour
         HasEnnemie = true;
         waveGenerator.RemovePos(this);
         EnnemieObj.SetActive(true);
+        sprite.SetActive(false);
     }
 }

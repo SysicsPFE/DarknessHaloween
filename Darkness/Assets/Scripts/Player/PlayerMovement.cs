@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 public class PlayerMovement : MonoBehaviour
@@ -19,13 +19,17 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool isNotInput;
     public PlayerEvents playerEvents;
+    Transform target = null;
     private void OnEnable()
     {
-        
+
         //EventController.canKill += ChangeTarget;
-       // EventController.sendSettingData += GetSettingData;
+        // EventController.sendSettingData += GetSettingData;
         //EventController.gameWin += GameWin;
         //EventController.gameLoose += GameLoose;
+        StartCoroutine(carouTineTarget());
+
+
     }
 
     private void OnDisable()
@@ -34,8 +38,9 @@ public class PlayerMovement : MonoBehaviour
         //EventController.sendSettingData -= GetSettingData;
        // EventController.gameWin -= GameWin;
        // EventController.gameLoose -= GameLoose;
+        StopCoroutine(carouTineTarget());
 
-        
+
 
     }
 
@@ -43,7 +48,32 @@ public class PlayerMovement : MonoBehaviour
     {
       
     }
+    
+    IEnumerator carouTineTarget()
+    {
+        UpdateTarget();
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(carouTineTarget());
+    }
+    
+    void UpdateTarget()
+    {
+        Collider[] ennemies = Physics.OverlapSphere(transform.position, 10);
+        for (int i = 0; i < ennemies.Length; i++)
+        {
+            if (ennemies[i].transform.tag == "Ennemie")
+            {
+                target = ennemies[i].transform;
+                break;
 
+            }
+            else
+            {
+                target = null;
+            }
+        }
+        
+    }
     void Update()
     {
         /*if (isWin==true||Singleton._instance.state==GameState.win)
@@ -127,22 +157,13 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.speed = 1;
         }
-        Transform target=null;
-        Collider[] ennemies = Physics.OverlapSphere(transform.position, 10);
-        for (int i = 0; i < ennemies.Length; i++)
-        {
-            if (ennemies[i].transform.tag=="Ennemie")
-            {
-                target = ennemies[i].transform;
-                break;
-
-            }
-        }
+       
+      
         if (target!=null)
         {
             if (playerEvents.canRotate == true)
             {
-                LookToEnnemie(ennemies[0].transform);
+                LookToEnnemie(target);
             }
             
             

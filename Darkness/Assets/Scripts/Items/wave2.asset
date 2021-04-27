@@ -20,6 +20,6 @@ MonoBehaviour:
   - {fileID: 493929073801386929, guid: f26eddd045409764e94e63d9c3982dcf, type: 3}
   - {fileID: 493929073801386929, guid: f26eddd045409764e94e63d9c3982dcf, type: 3}
   speed: 4
-  health: 10
+  health: 5
   Nbennemie: 6
   increment: 0

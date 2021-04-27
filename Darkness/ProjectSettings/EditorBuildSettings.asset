@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/farah/SCENE/ChargementScene/Chargement.unity
+    guid: 84ddf61f3be57eb4a8ab44045cfdb543
+  - enabled: 1
+    path: Assets/farah/SCENE/MainMenu.unity
+    guid: ad83d1ba684e8754bb5055245b659bc5
+  - enabled: 1
+    path: Assets/farah/SCENE/GamePlay.unity
+    guid: 4ac1685f8a174b644b8be1adc5824dd0
   m_configObjects: {}
