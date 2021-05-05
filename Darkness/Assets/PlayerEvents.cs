@@ -8,9 +8,10 @@ public class PlayerEvents : MonoBehaviour
     public GameObject ShootPrefab;
     public Animator anim;
     public bool canRotate;
+    public List<GameObject> armes;
     void Start()
     {
-        
+        armes[PlayerPrefs.GetInt("use", 0)].SetActive(true);
     }
 
     // Update is called once per frame
