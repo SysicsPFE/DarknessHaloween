@@ -9,6 +9,7 @@ public class PlayerEvents : MonoBehaviour
     public Animator anim;
     public bool canRotate;
     public List<GameObject> armes;
+    public AudioSource walkaudio;
     void Start()
     {
         armes[PlayerPrefs.GetInt("use", 0)].SetActive(true);
@@ -54,6 +55,12 @@ public class PlayerEvents : MonoBehaviour
         }
         canRotate = true;
 
+    }
+
+    public void Walk()
+    {
+        walkaudio.volume = SoundController.instance.EffectVolume;
+        walkaudio.Play();
     }
 
 }

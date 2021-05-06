@@ -23,6 +23,8 @@ public class WaveGenerator : MonoBehaviour
 
     public Text TextNbennemie;
     public Text Textcounter;
+
+    public GameCanvasController gameCanvasController;
     private void Awake()
     {
         WaveIndex = 0;
@@ -91,6 +93,7 @@ public class WaveGenerator : MonoBehaviour
             if (WaveIndex== waves.Count-1)
             {
                 print("GameWin");
+                gameCanvasController.gameWin();
             }
             else
             {
@@ -107,6 +110,7 @@ public class WaveGenerator : MonoBehaviour
         if (EndPos.Count==0)
         {
             print("GameOver");
+            gameCanvasController.gameOver();
             return;
         }
         int E = Random.Range(0, EndPos.Count - 1);

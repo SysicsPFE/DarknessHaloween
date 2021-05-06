@@ -23494,6 +23494,7 @@ MonoBehaviour:
   speed: 2000
   particuleEffect: {fileID: 7696796602827369265, guid: 71a57c58530e1f548ad8de6aba766ce6,
     type: 3}
+  audio: {fileID: 3064580374827576723}
 --- !u!54 &9054953810316057100
 Rigidbody:
   m_ObjectHideFlags: 0
